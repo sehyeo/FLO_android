@@ -1,47 +1,59 @@
 package com.example.flo_android
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.flo_android.ui.theme.FLO_androidTheme
+import androidx.appcompat.app.AppCompatActivity
+import com.example.flo_android.databinding.ActivityMainBinding
 
-class MainActivity : ComponentActivity() {
+
+class MainActivity : AppCompatActivity() {
+
+    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            FLO_androidTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        initBottomNavigation()
+    }
+
+    private fun initBottomNavigation() {
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_frm, HomeFragment())
+            .commitAllowingStateLoss()
+
+        binding.mainBnv.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+
+                R.id.homeFragment -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, HomeFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.lookFragment -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, LookFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.searchFragment -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, SearchFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.lockerFragment -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, LockerFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
                 }
             }
+            false
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FLO_androidTheme {
-        Greeting("Android")
     }
 }
