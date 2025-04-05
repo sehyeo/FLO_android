@@ -5,8 +5,8 @@ package com.example.flo_android
 
 data class Song(
     val title : String = "",
-    val singer : String = ""
-//    val startTime : String = "",
-//    val endTime : String = "",
-//    val isplaying : Boolean = false
+    val singer : String = "",
+    var second: Int = 0,
+    var playTime: Int = 0,
+    var isplaying : Boolean = false
 )
