@@ -13,7 +13,6 @@
         app:layout_constraintBottom_toTopOf="@id/main_player_cl"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_player_cl"
         android:layout_width="match_parent"
