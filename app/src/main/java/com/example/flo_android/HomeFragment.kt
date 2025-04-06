@@ -44,6 +44,7 @@ class HomeFragment : Fragment() {
 
         binding.homePanelVp.adapter = panelAdapter
         binding.homePanelVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        binding.homePanelIndicator.setViewPager(binding.homePanelVp)
 
         return binding.root
     }
