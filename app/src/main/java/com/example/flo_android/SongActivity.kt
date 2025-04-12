@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.flo_android.databinding.ActivitySongBinding
+import com.google.gson.Gson
 
 class SongActivity : AppCompatActivity() {
 
@@ -13,6 +14,7 @@ class SongActivity : AppCompatActivity() {
     lateinit var song : Song
     lateinit var timer : Timer
     private var mediaPlayer: MediaPlayer? = null
+    private var gson: Gson = Gson()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,6 +124,13 @@ class SongActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         setPlayerStatus(false)
+        song.second = ((binding.songProgressSb.progress * song.playTime)/100)/1000 // mills로 계산되고 있기 때문에 1000으로 나눔.
+        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE) // 다른 앱에서 접근할 수 없게
+        val editor = sharedPreferences.edit() // 에디터
+        val songJson = gson.toJson(song)
+        editor.putString("song", songJson)
+
+        editor.apply() // git의 commit과 push와 같은 역할
     }
 
     override fun onDestroy() {
