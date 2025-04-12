@@ -128,7 +128,7 @@ class SongActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE) // 다른 앱에서 접근할 수 없게
         val editor = sharedPreferences.edit() // 에디터
         val songJson = gson.toJson(song)
-        editor.putString("song", songJson)
+        editor.putString("songData", songJson)
 
         editor.apply() // git의 commit과 push와 같은 역할
     }
