@@ -34,11 +34,6 @@ class SongActivity : AppCompatActivity() {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        timer.interrupt()
-    }
-
     private fun initSong(){
         if(intent.hasExtra("title") && intent.hasExtra("singer")){
             song = Song(
@@ -120,8 +115,19 @@ class SongActivity : AppCompatActivity() {
             }catch(e: InterruptedException){
                 Log.d("Song", "쓰레드가 죽었습니다. ${e.message}")
             }
-
-
         }
+    }
+
+    // 사용자가 포커스를 잃었을 때 음악이 중지
+    override fun onPause() {
+        super.onPause()
+        setPlayerStatus(false)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        timer.interrupt()
+        mediaPlayer?.release() // 미디어플레이어가 갖고 있던 리소스 해제
+        mediaPlayer = null // 미디어 플레이어 해제
     }
 }
