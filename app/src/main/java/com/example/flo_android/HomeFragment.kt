@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.flo_android.databinding.FragmentHomeBinding
 
@@ -29,6 +30,10 @@ class HomeFragment : Fragment() {
             add(Album("BBoom BBoom", "모모랜드 (MOMOLAND)", R.drawable.img_album_exp5))
             add(Album("Weekend", "태연 (Tae Yeon)", R.drawable.img_album_exp6))
         }
+
+        val albumRVAdapter = AlbumRVAdapter(albumDatas)
+        binding.homeTodayMusicAlbumRv.adapter = albumRVAdapter
+        binding.homeTodayMusicAlbumRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         val bannerAdapter = BannerVPAdapter(this)
         bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp))
