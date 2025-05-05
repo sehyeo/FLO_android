@@ -12,7 +12,7 @@ data class Song(
     var singer : String = "",
     var second: Int = 0,
     var playTime: Int = 0,
-    var isplaying : Boolean = false,
+    var isPlaying : Boolean = false,
     var music: String = "",
     var coverImg: Int? = null,
     var isLike: Boolean = false

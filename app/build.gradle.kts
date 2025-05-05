@@ -46,6 +46,13 @@ android {
     buildFeatures {
         compose = true
     }
+    kapt {
+        arguments {
+            arg("room.incremental", "true")
+            arg("room.expandProjection", "true")
+        }
+    }
+
 }
 
 dependencies {

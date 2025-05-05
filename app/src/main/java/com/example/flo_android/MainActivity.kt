@@ -26,13 +26,11 @@ class MainActivity : AppCompatActivity() {
         initBottomNavigation()
 
         binding.mainPlayerCl.setOnClickListener {
+            val editor = getSharedPreferences("song", MODE_PRIVATE).edit()
+            editor.putInt("songId", song.id)
+            editor.apply()
+
             val intent = Intent(this,SongActivity::class.java)
-            intent.putExtra("title", song.title)
-            intent.putExtra("singer", song.singer)
-            intent.putExtra("second", song.second)
-            intent.putExtra("playTime", song.playTime)
-            intent.putExtra("isPlaying", song.isplaying)
-            intent.putExtra("music", song.music)
             startActivity(intent)
         }
     }
@@ -174,11 +172,11 @@ class MainActivity : AppCompatActivity() {
         songDB.songDao().insert(
             Song(
                 "Boy with Luv",
-                "music_boy",
+                "방탄소년단 (BTS)",
                 0,
                 230,
                 false,
-                "music_lilac",
+                "music_boy",
                 R.drawable.img_album_exp4,
                 false,
             )
