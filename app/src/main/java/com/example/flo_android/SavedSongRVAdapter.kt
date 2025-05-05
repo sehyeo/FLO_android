@@ -28,8 +28,8 @@ class SavedSongRVAdapter() : RecyclerView.Adapter<SavedSongRVAdapter.ViewHolder>
     override fun onBindViewHolder(holder: SavedSongRVAdapter.ViewHolder, position: Int) {
         holder.bind(songs[position])
         holder.binding.itemSongMoreIv.setOnClickListener {
-            removeSong(position)
             mItemClickListener.onRemoveSong(songs[position].id)
+            removeSong(position)
         }
     }
 

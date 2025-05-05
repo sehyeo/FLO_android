@@ -35,6 +35,12 @@ class SavedSongFragment : Fragment() {
 
         val songRVAdapter = SavedSongRVAdapter()
 
+        songRVAdapter.setMyItemClickListener(object : SavedSongRVAdapter.MyItemClickListener{
+            override fun onRemoveSong(songId: Int) {
+                songDB.songDao().updateIsLikeById(false, songId)
+            }
+        })
+
         binding.lockerSavedSongRecyclerView.adapter = songRVAdapter
 
         songRVAdapter.addSongs(songDB.songDao().getLikedSongs(true) as ArrayList<Song>)
