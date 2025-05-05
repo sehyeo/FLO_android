@@ -1,9 +1,12 @@
 package com.example.flo_android
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.replace
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,6 +47,24 @@ class HomeFragment : Fragment() {
 
             override fun onRemoveAlbum(position: Int) {
                 albumRVAdapter.removeItem(position)
+            }
+
+            override fun onPlayClick(album: Album) {
+                Log.d("HomeFragment", "▶ 버튼 클릭됨 - 앨범: ${album.title}, 가수: ${album.singer}")
+                val songDB = SongDatabase.getInstance(requireContext())!!
+                val song = songDB.songDao().getSongs().firstOrNull {
+                    it.title == album.title && it.singer == album.singer
+                }
+                song?.let {
+                    Log.d("HomeFragment", "선택된 곡 ID: ${it.id}, 제목: ${it.title}")
+                    requireActivity().getSharedPreferences("song", AppCompatActivity.MODE_PRIVATE).edit {
+                        putInt("songId", it.id)
+                    }
+
+                    // 미니 플레이어 즉시 갱신
+                    val mainActivity = activity as? MainActivity
+                    mainActivity?.setMiniPlayer(it)
+                }
             }
         })
 

@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,SongActivity::class.java)
             startActivity(intent)
         }
+
     }
 
     private fun initBottomNavigation() {
@@ -76,7 +77,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setMiniPlayer(song: Song){
+    fun setMiniPlayer(song: Song){
+        this.song = song
         binding.mainMiniplayerTitleTv.text = song.title
         binding.mainMiniplayerSingerTv.text = song.singer
         binding.mainMiniplayerProgressSb.progress = (song.second*100000)/song.playTime // Seekbar의 max가 100000이므로
