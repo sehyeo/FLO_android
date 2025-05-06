@@ -111,100 +111,56 @@ class MainActivity : AppCompatActivity() {
         setMiniPlayer(song)
     }
 
-    private fun inputDummySongs(){
+    private fun inputDummySongs() {
         val songDB = SongDatabase.getInstance(this)!!
-        val songs = songDB.songDao().getSongs()
+        val existingSongs = songDB.songDao().getSongs()
 
-        //Log.d("DB data check", "현재 song 개수: ${songs.size}")
-        if (songs.isNotEmpty()) return
-
-        songDB.songDao().insert(
-            Song(
-                "Lilac",
-                "아이유 (IU)",
-                0,
-                200,
-                false,
-                "music_lilac",
-                R.drawable.img_album_exp2,
-                false,
+        if (existingSongs.isEmpty()) {
+            songDB.songDao().insert(
+                Song("Lilac", "아이유 (IU)", 0, 200, false, "music_lilac", R.drawable.img_album_exp2, false)
             )
-        )
-
-        songDB.songDao().insert(
-            Song(
-                "Flu",
-                "아이유 (IU)",
-                0,
-                200,
-                false,
-                "music_flu",
-                R.drawable.img_album_exp2,
-                false,
+            songDB.songDao().insert(
+                Song("Flu", "아이유 (IU)", 0, 200, false, "music_flu", R.drawable.img_album_exp2, false)
             )
-        )
-
-        songDB.songDao().insert(
-            Song(
-                "Butter",
-                "방탄소년단 (BTS)",
-                0,
-                190,
-                false,
-                "music_butter",
-                R.drawable.img_album_exp,
-                false,
+            songDB.songDao().insert(
+                Song("Butter", "방탄소년단 (BTS)", 0, 190, false, "music_butter", R.drawable.img_album_exp, false)
             )
-        )
-
-        songDB.songDao().insert(
-            Song(
-                "Next Level",
-                "에스파 (AESPA)",
-                0,
-                210,
-                false,
-                "music_next",
-                R.drawable.img_album_exp3,
-                false,
+            songDB.songDao().insert(
+                Song("Next Level", "에스파 (AESPA)", 0, 210, false, "music_next", R.drawable.img_album_exp3, false)
             )
-        )
-
-
-        songDB.songDao().insert(
-            Song(
-                "Boy with Luv",
-                "방탄소년단 (BTS)",
-                0,
-                230,
-                false,
-                "music_boy",
-                R.drawable.img_album_exp4,
-                false,
+            songDB.songDao().insert(
+                Song("Boy with Luv", "방탄소년단 (BTS)", 0, 230, false, "music_boy", R.drawable.img_album_exp4, false)
             )
-        )
-
-
-        songDB.songDao().insert(
-            Song(
-                "BBoom BBoom",
-                "모모랜드 (MOMOLAND)",
-                0,
-                240,
-                false,
-                "music_bboom",
-                R.drawable.img_album_exp5,
-                false,
+            songDB.songDao().insert(
+                Song("BBoom BBoom", "모모랜드 (MOMOLAND)", 0, 240, false, "music_bboom", R.drawable.img_album_exp5, false)
             )
-        )
-
-        val _songs = songDB.songDao().getSongs()
-        Log.d("DB data", _songs.toString())
-
-        val allSongs = songDB.songDao().getSongs()
-        for (song in allSongs) {
-            Log.d("SongDebug", "ID=${song.id}, Title=${song.title}")
+            songDB.songDao().insert(
+                Song("Weekend", "태연 (Tae Yeon)", 0, 234, false, "music_lilac", R.drawable.img_album_exp6, false)
+            )
         }
 
+        // 새로 추가할 곡 목록
+        val newSongs = listOf(
+            Song("Celebrity", "아이유 (IU)", 0, 200, false, "music_lilac", R.drawable.img_album_exp2, false),
+            Song("Coin", "아이유 (IU)", 0, 200, false, "music_lilac", R.drawable.img_album_exp2, false),
+            Song("소우주 (Mikrokosmos)", "방탄소년단 (BTS)", 0, 230, false, "music_boy", R.drawable.img_album_exp4, false),
+            Song("Make It Right", "방탄소년단 (BTS)", 0, 230, false, "music_boy", R.drawable.img_album_exp4, false)
+        )
+
+        newSongs.forEach { newSong ->
+            val exists = existingSongs.any { it.title == newSong.title && it.singer == newSong.singer }
+            if (!exists) {
+                songDB.songDao().insert(newSong)
+            }
+        }
+
+        val updatedSongs = songDB.songDao().getSongs()
+        Log.d("DB data", updatedSongs.toString())
+
+        for (song in updatedSongs) {
+            Log.d("SongDebug", "ID=${song.id}, Title=${song.title}")
+        }
     }
+
+
 }

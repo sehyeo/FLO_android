@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@android:color/white">
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/locker_content_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="음악 파일이 없습니다."
-        android:textColor="@android:color/darker_gray"
-        android:textSize="14sp" />
-</LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/locker_musicFile_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_song"
+        android:overScrollMode="never"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+</androidx.constraintlayout.widget.ConstraintLayout>
