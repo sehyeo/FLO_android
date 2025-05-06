@@ -54,6 +54,14 @@ class SavedSongRVAdapter() : RecyclerView.Adapter<SavedSongRVAdapter.ViewHolder>
             binding.itemSongImgIv.setImageResource(song.coverImg!!)
             binding.itemSongTitleTv.text = song.title
             binding.itemSongSingerTv.text = song.singer
+            binding.itemSongSwitch.isChecked = song.isChecked
+
+            binding.itemSongSwitch.setOnCheckedChangeListener { _, isChecked ->
+                song.isChecked = isChecked
+                // DB에 저장
+                val db = SongDatabase.getInstance(binding.root.context)!!
+                db.songDao().updateIsCheckedById(isChecked, song.id)
+            }
         }
     }
 }

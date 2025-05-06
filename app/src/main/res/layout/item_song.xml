@@ -58,6 +58,15 @@
         app:layout_constraintTop_toTopOf="@id/item_song_more_iv"
         app:layout_constraintBottom_toBottomOf="@id/item_song_more_iv"/>
 
+    <Switch
+        android:id="@+id/item_song_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/item_song_play_iv"/>
+
     <ImageView
         android:id="@+id/item_song_more_iv"
         android:layout_width="30dp"
