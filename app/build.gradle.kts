@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    kotlin("kapt")
 }
 
 android {
@@ -45,6 +46,13 @@ android {
     buildFeatures {
         compose = true
     }
+    kapt {
+        arguments {
+            arg("room.incremental", "true")
+            arg("room.expandProjection", "true")
+        }
+    }
+
 }
 
 dependencies {
@@ -72,4 +80,9 @@ dependencies {
     implementation("me.relex:circleindicator:2.1.6")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("com.google.code.gson:gson:2.8.7")
+
+    //  RoomDB
+    implementation ("androidx.room:room-ktx:2.4.1")
+    implementation ("androidx.room:room-runtime:2.4.1")
+    kapt ("androidx.room:room-compiler:2.4.1")
 }
