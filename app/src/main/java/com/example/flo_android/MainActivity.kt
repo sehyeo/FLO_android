@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         inputDummySongs()
+        inputDummyAlbums()
         initBottomNavigation()
 
         binding.mainPlayerCl.setOnClickListener {
@@ -117,34 +118,34 @@ class MainActivity : AppCompatActivity() {
 
         if (existingSongs.isEmpty()) {
             songDB.songDao().insert(
-                Song("Lilac", "아이유 (IU)", 0, 200, false, "music_lilac", R.drawable.img_album_exp2, false)
+                Song("Lilac", "아이유 (IU)", 0, 200, false, "music_lilac", R.drawable.img_album_exp2, false, false, 1)
             )
             songDB.songDao().insert(
-                Song("Flu", "아이유 (IU)", 0, 200, false, "music_flu", R.drawable.img_album_exp2, false)
+                Song("Flu", "아이유 (IU)", 0, 200, false, "music_flu", R.drawable.img_album_exp2, false, false, 1)
             )
             songDB.songDao().insert(
-                Song("Butter", "방탄소년단 (BTS)", 0, 190, false, "music_butter", R.drawable.img_album_exp, false)
+                Song("Butter", "방탄소년단 (BTS)", 0, 190, false, "music_butter", R.drawable.img_album_exp, false, false, 2)
             )
             songDB.songDao().insert(
-                Song("Next Level", "에스파 (AESPA)", 0, 210, false, "music_next", R.drawable.img_album_exp3, false)
+                Song("Next Level", "에스파 (AESPA)", 0, 210, false, "music_next", R.drawable.img_album_exp3, false, false, 3)
             )
             songDB.songDao().insert(
-                Song("Boy with Luv", "방탄소년단 (BTS)", 0, 230, false, "music_boy", R.drawable.img_album_exp4, false)
+                Song("Boy with Luv", "방탄소년단 (BTS)", 0, 230, false, "music_boy", R.drawable.img_album_exp4, false, false, 4)
             )
             songDB.songDao().insert(
-                Song("BBoom BBoom", "모모랜드 (MOMOLAND)", 0, 240, false, "music_bboom", R.drawable.img_album_exp5, false)
+                Song("BBoom BBoom", "모모랜드 (MOMOLAND)", 0, 240, false, "music_bboom", R.drawable.img_album_exp5, false, false, 5)
             )
             songDB.songDao().insert(
-                Song("Weekend", "태연 (Tae Yeon)", 0, 234, false, "music_lilac", R.drawable.img_album_exp6, false)
+                Song("Weekend", "태연 (Tae Yeon)", 0, 234, false, "music_lilac", R.drawable.img_album_exp6, false, false, 6)
             )
         }
 
         // 새로 추가할 곡 목록
         val newSongs = listOf(
-            Song("Celebrity", "아이유 (IU)", 0, 200, false, "music_lilac", R.drawable.img_album_exp2, false),
-            Song("Coin", "아이유 (IU)", 0, 200, false, "music_lilac", R.drawable.img_album_exp2, false),
-            Song("소우주 (Mikrokosmos)", "방탄소년단 (BTS)", 0, 230, false, "music_boy", R.drawable.img_album_exp4, false),
-            Song("Make It Right", "방탄소년단 (BTS)", 0, 230, false, "music_boy", R.drawable.img_album_exp4, false)
+            Song("Celebrity", "아이유 (IU)", 0, 200, false, "music_lilac", R.drawable.img_album_exp2, false, false, 1),
+            Song("Coin", "아이유 (IU)", 0, 200, false, "music_lilac", R.drawable.img_album_exp2, false, false, 1),
+            Song("소우주 (Mikrokosmos)", "방탄소년단 (BTS)", 0, 230, false, "music_boy", R.drawable.img_album_exp4, false, false, 4),
+            Song("Make It Right", "방탄소년단 (BTS)", 0, 230, false, "music_boy", R.drawable.img_album_exp4, false, false, 4)
         )
 
         newSongs.forEach { newSong ->
@@ -160,6 +161,49 @@ class MainActivity : AppCompatActivity() {
         for (song in updatedSongs) {
             Log.d("SongDebug", "ID=${song.id}, Title=${song.title}")
         }
+    }
+
+    private fun inputDummyAlbums() {
+        val songDB = SongDatabase.getInstance(this)!!
+        val albums = songDB.albumDao().getAlbums()
+
+        if (albums.isNotEmpty()) return
+
+        songDB.albumDao().insert(
+            Album(
+                0,
+                "IU 5th Album 'LILAC'", "아이유 (IU)", R.drawable.img_album_exp2
+            )
+        )
+
+        songDB.albumDao().insert(
+            Album(
+                1,
+                "Butter", "방탄소년단 (BTS)", R.drawable.img_album_exp
+            )
+        )
+
+        songDB.albumDao().insert(
+            Album(
+                2,
+                "iScreaM Vol.10 : Next Level Remixes", "에스파 (AESPA)", R.drawable.img_album_exp3
+            )
+        )
+
+        songDB.albumDao().insert(
+            Album(
+                3,
+                "MAP OF THE SOUL : PERSONA", "방탄소년단 (BTS)", R.drawable.img_album_exp4
+            )
+        )
+
+        songDB.albumDao().insert(
+            Album(
+                4,
+                "GREAT!", "모모랜드 (MOMOLAND)", R.drawable.img_album_exp5
+            )
+        )
+
     }
 
 

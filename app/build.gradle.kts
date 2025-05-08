@@ -42,12 +42,14 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+        freeCompilerArgs += listOf("-Xjvm-default=all", "-Xemit-jvm-type-annotations")
     }
     buildFeatures {
         compose = true
     }
     kapt {
         arguments {
+            arg("room.schemaLocation", "$projectDir/schemas")
             arg("room.incremental", "true")
             arg("room.expandProjection", "true")
         }
@@ -82,7 +84,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.7")
 
     //  RoomDB
-    implementation ("androidx.room:room-ktx:2.4.1")
-    implementation ("androidx.room:room-runtime:2.4.1")
-    kapt ("androidx.room:room-compiler:2.4.1")
+    implementation ("androidx.room:room-ktx:2.5.2")
+    implementation ("androidx.room:room-runtime:2.5.2")
+    kapt ("androidx.room:room-compiler:2.5.2")
 }
