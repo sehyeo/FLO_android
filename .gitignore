@@ -13,6 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+*.json
 
 # Kotlin build cache
 .kotlin/

@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
     private var song: Song = Song()
+    private var album: Album = Album()
     private var gson: Gson = Gson()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,14 +89,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-//        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE)
-//        val songJson = sharedPreferences.getString("songData", null)
-//
-//        song = if(songJson == null){
-//            Song("라일락", "아이유(IU)", 0, 60, false, "music_lilac")
-//        } else {
-//            gson.fromJson(songJson, Song::class.java)
-//        }
 
         val spf = getSharedPreferences("song", MODE_PRIVATE)
         val songId = spf.getInt("songId",0)
@@ -165,45 +158,63 @@ class MainActivity : AppCompatActivity() {
 
     private fun inputDummyAlbums() {
         val songDB = SongDatabase.getInstance(this)!!
-        val albums = songDB.albumDao().getAlbums()
+        val existingAlbums = songDB.albumDao().getAlbums()
 
-        if (albums.isNotEmpty()) return
-
-        songDB.albumDao().insert(
-            Album(
-                0,
-                "IU 5th Album 'LILAC'", "아이유 (IU)", R.drawable.img_album_exp2
+        if (existingAlbums.isEmpty()) {
+            songDB.albumDao().insert(
+                Album(
+                    1,
+                    "IU 5th Album 'LILAC'", "아이유 (IU)", R.drawable.img_album_exp2
+                )
             )
+
+            songDB.albumDao().insert(
+                Album(
+                    2,
+                    "Butter", "방탄소년단 (BTS)", R.drawable.img_album_exp
+                )
+            )
+
+            songDB.albumDao().insert(
+                Album(
+                    3,
+                    "iScreaM Vol.10 : Next Level Remixes", "에스파 (AESPA)", R.drawable.img_album_exp3
+                )
+            )
+
+            songDB.albumDao().insert(
+                Album(
+                    4,
+                    "MAP OF THE SOUL : PERSONA", "방탄소년단 (BTS)", R.drawable.img_album_exp4
+                )
+            )
+
+            songDB.albumDao().insert(
+                Album(
+                    5,
+                    "GREAT!", "모모랜드 (MOMOLAND)", R.drawable.img_album_exp5
+                )
+            )
+        }
+
+        // 새로 추가할 곡 목록
+        val newAlbums = listOf(
+            Album(6, "Weekend", "태연 (Taeyeon)", R.drawable.img_album_exp6)
         )
 
-        songDB.albumDao().insert(
-            Album(
-                1,
-                "Butter", "방탄소년단 (BTS)", R.drawable.img_album_exp
-            )
-        )
+        newAlbums.forEach { newAlbum ->
+            val exists = existingAlbums.any { it.title == newAlbum.title && it.singer == newAlbum.singer }
+            if (!exists) {
+                songDB.albumDao().insert(newAlbum)
+            }
+        }
 
-        songDB.albumDao().insert(
-            Album(
-                2,
-                "iScreaM Vol.10 : Next Level Remixes", "에스파 (AESPA)", R.drawable.img_album_exp3
-            )
-        )
+        val updatedAlbums = songDB.albumDao().getAlbums()
+        Log.d("DB data", updatedAlbums.toString())
 
-        songDB.albumDao().insert(
-            Album(
-                3,
-                "MAP OF THE SOUL : PERSONA", "방탄소년단 (BTS)", R.drawable.img_album_exp4
-            )
-        )
-
-        songDB.albumDao().insert(
-            Album(
-                4,
-                "GREAT!", "모모랜드 (MOMOLAND)", R.drawable.img_album_exp5
-            )
-        )
-
+        for (song in updatedAlbums) {
+            Log.d("AlbumDebug", "ID=${album.id}, Title=${album.title}")
+        }
     }
 
 
