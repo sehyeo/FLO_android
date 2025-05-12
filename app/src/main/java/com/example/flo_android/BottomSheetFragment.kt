@@ -11,13 +11,22 @@ class BottomSheetFragment() : BottomSheetDialogFragment() {
 
     lateinit var binding : FragmentBottomSheetBinding
 
+    interface BottomSheetListener {
+        fun onDeleteSelected()
+    }
+
+    private var listener: BottomSheetListener? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBottomSheetBinding.inflate(inflater, container, false)
 
-
         return binding.root
+    }
+
+    fun setBottomSheetListener(listener: BottomSheetListener) {
+        this.listener = listener
     }
 }

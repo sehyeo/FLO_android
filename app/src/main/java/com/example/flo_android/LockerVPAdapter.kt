@@ -4,6 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class LockerVPAdapter (fragment : Fragment) : FragmentStateAdapter(fragment) {
+    val savedSongFragment = SavedSongFragment()
+
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {

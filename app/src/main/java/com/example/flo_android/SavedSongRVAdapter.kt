@@ -8,6 +8,7 @@ import com.example.flo_android.databinding.ItemSongBinding
 
 class SavedSongRVAdapter() : RecyclerView.Adapter<SavedSongRVAdapter.ViewHolder>() {
     private val songs = ArrayList<Song>()
+    private val selectedStates = mutableMapOf<Int, Boolean>()
 
     interface MyItemClickListener{
         fun onRemoveSong(songId: Int)
@@ -46,6 +47,28 @@ class SavedSongRVAdapter() : RecyclerView.Adapter<SavedSongRVAdapter.ViewHolder>
     @SuppressLint("NotifyDataSetChanged")
     fun removeSong(position: Int){
         songs.removeAt(position)
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun selectAll(select: Boolean) {
+        for (i in songs.indices) {
+            selectedStates[i] = select
+        }
+        notifyDataSetChanged()
+    }
+
+    fun getSelectedSongs(): List<Song> {
+        return songs.filterIndexed { index, _ -> selectedStates[index] == true }
+    }
+
+    fun removeSelectedSongs() {
+        for (i in songs.size - 1 downTo 0) {
+            if (selectedStates[i] == true) {
+                songs.removeAt(i)
+                selectedStates.remove(i)
+            }
+        }
         notifyDataSetChanged()
     }
 

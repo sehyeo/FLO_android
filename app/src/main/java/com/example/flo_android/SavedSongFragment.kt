@@ -12,6 +12,7 @@ class SavedSongFragment : Fragment() {
 
     lateinit var binding: FragmentLockerSavedsongBinding
     lateinit var songDB: SongDatabase
+    lateinit var savedSongRVAdapter: SavedSongRVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,16 +34,27 @@ class SavedSongFragment : Fragment() {
     private fun initRecyclerview(){
         binding.lockerSavedSongRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        val songRVAdapter = SavedSongRVAdapter()
+        savedSongRVAdapter = SavedSongRVAdapter()
+        binding.lockerSavedSongRecyclerView.adapter = savedSongRVAdapter
 
-        songRVAdapter.setMyItemClickListener(object : SavedSongRVAdapter.MyItemClickListener{
+        savedSongRVAdapter.setMyItemClickListener(object : SavedSongRVAdapter.MyItemClickListener{
             override fun onRemoveSong(songId: Int) {
                 songDB.songDao().updateIsLikeById(false, songId)
             }
         })
 
-        binding.lockerSavedSongRecyclerView.adapter = songRVAdapter
+        savedSongRVAdapter.addSongs(songDB.songDao().getLikedSongs(true) as ArrayList<Song>)
+    }
 
-        songRVAdapter.addSongs(songDB.songDao().getLikedSongs(true) as ArrayList<Song>)
+    fun selectAllSongs(select: Boolean) {
+        savedSongRVAdapter.selectAll(select)
+    }
+
+    fun deleteSelectedSongs() {
+        val selectedSongs = savedSongRVAdapter.getSelectedSongs()
+        for (song in selectedSongs) {
+            songDB.songDao().updateIsLikeById(false, song.id)
+        }
+        savedSongRVAdapter.removeSelectedSongs()
     }
 }
