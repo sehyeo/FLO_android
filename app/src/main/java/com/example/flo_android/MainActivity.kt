@@ -106,6 +106,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun inputDummySongs() {
         val songDB = SongDatabase.getInstance(this)!!
+
+        //songDB.songDao().deleteAllSongs()
         val songs = songDB.songDao().getSongs()
 
         if (songs.isNotEmpty()) return
@@ -153,6 +155,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun inputDummyAlbums() {
         val songDB = SongDatabase.getInstance(this)!!
+
+       // songDB.albumDao().deleteAllAlbums()
         val albums = songDB.albumDao().getAlbums()
 
         if (albums.isNotEmpty()) return

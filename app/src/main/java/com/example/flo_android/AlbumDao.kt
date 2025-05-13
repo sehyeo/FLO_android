@@ -17,6 +17,9 @@ interface AlbumDao {
     @Delete
     fun delete(album: Album)
 
+    @Query("DELETE FROM AlbumTable")
+    fun deleteAllAlbums()
+
     @Query("SELECT * FROM AlbumTable") // 테이블의 모든 값을 가져와라
     fun getAlbums(): List<Album>
 
