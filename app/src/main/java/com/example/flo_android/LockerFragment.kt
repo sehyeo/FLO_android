@@ -1,5 +1,6 @@
 package com.example.flo_android
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +34,11 @@ class LockerFragment : Fragment() {
         binding.lockerSelectAllTv.setOnClickListener {
             lockerAdapter.savedSongFragment.selectAllSongs(true)
         }
+
+        binding.lockerLoginTv.setOnClickListener {
+            startActivity(Intent(activity, LoginActivity::class.java))
+        }
+
 
         setupBottomSheetListener()
 
