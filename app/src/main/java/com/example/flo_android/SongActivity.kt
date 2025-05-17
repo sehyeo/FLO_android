@@ -79,8 +79,10 @@ class SongActivity : AppCompatActivity() {
 
         if (!isLike){
             binding.songLikeIv.setImageResource(R.drawable.ic_my_like_on)
+            Toast.makeText(this, "좋아요가 반영되었습니다.", Toast.LENGTH_SHORT).show()
         } else{
             binding.songLikeIv.setImageResource(R.drawable.ic_my_like_off)
+            Toast.makeText(this, "좋아요가 취소되었습니다.", Toast.LENGTH_SHORT).show()
         }
     }
 
