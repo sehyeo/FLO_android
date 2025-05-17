@@ -100,8 +100,14 @@ class MainActivity : AppCompatActivity() {
             songDB.songDao().getSong(songId)
         }
 
+        if (song == null) {
+            Log.e("ERROR", "song is null")
+            return
+        }
+
         Log.d("song ID", song.id.toString())
         setMiniPlayer(song)
+
     }
 
     private fun inputDummySongs() {

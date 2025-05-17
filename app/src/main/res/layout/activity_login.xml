@@ -9,7 +9,7 @@
         android:id="@+id/login_close_iv"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="5dp"
         android:src="@drawable/btn_actionbar_close"
         app:layout_constraintEnd_toEndOf="parent"
