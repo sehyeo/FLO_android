@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flo_android.databinding.ItemCategoryBinding
+import androidx.core.graphics.toColorInt
 
 class SearchRVAdapter(
     private val items: List<String>,
@@ -21,7 +22,7 @@ class SearchRVAdapter(
                 binding.categoryBtn.setTextColor(Color.WHITE)
             } else {
                 binding.categoryBtn.setBackgroundResource(R.drawable.bg_unselected)
-                binding.categoryBtn.setTextColor(Color.GRAY)
+                binding.categoryBtn.setTextColor("#000000".toColorInt())
             }
 
             binding.root.setOnClickListener {
