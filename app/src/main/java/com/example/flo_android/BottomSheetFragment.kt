@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import com.example.flo_android.databinding.FragmentBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class BottomSheetFragment() : BottomSheetDialogFragment() {
+class BottomSheetFragment : BottomSheetDialogFragment() {
 
-    lateinit var binding : FragmentBottomSheetBinding
+    lateinit var binding: FragmentBottomSheetBinding
 
     interface BottomSheetListener {
         fun onDeleteSelected()
@@ -18,10 +18,16 @@ class BottomSheetFragment() : BottomSheetDialogFragment() {
     private var listener: BottomSheetListener? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentBottomSheetBinding.inflate(inflater, container, false)
+
+        binding.btnDeleteSelectedIv.setOnClickListener {
+            listener?.onDeleteSelected()
+            dismiss()
+        }
 
         return binding.root
     }

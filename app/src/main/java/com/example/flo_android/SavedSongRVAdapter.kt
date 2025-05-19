@@ -3,6 +3,7 @@ package com.example.flo_android
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flo_android.databinding.ItemSongBinding
 
@@ -78,6 +79,12 @@ class SavedSongRVAdapter() : RecyclerView.Adapter<SavedSongRVAdapter.ViewHolder>
             binding.itemSongTitleTv.text = song.title
             binding.itemSongSingerTv.text = song.singer
             binding.itemSongSwitch.isChecked = song.isChecked
+
+            val isSelected = selectedStates[adapterPosition] == true
+            binding.root.setBackgroundColor(
+                if (isSelected) ContextCompat.getColor(binding.root.context, R.color.colorPrimary)
+                else ContextCompat.getColor(binding.root.context, android.R.color.transparent)
+            )
 
             binding.itemSongSwitch.setOnCheckedChangeListener { _, isChecked ->
                 song.isChecked = isChecked
