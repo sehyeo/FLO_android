@@ -1,7 +1,6 @@
 package com.example.flo_android
 
 import androidx.room.Entity
-import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 

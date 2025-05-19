@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.flo.AlbumLockerRVAdapter
 import com.example.flo_android.databinding.FragmentLockerSavedalbumBinding
 
 class SavedAlbumFragment : Fragment() {
