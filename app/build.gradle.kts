@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     kotlin("kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -88,4 +89,8 @@ dependencies {
     implementation ("androidx.room:room-ktx:2.5.2")
     implementation ("androidx.room:room-runtime:2.5.2")
     kapt ("androidx.room:room-compiler:2.5.2")
+
+    // firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
+    implementation("com.google.firebase:firebase-analytics")
 }
