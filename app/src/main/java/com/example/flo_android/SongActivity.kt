@@ -1,5 +1,6 @@
 package com.example.flo_android
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
@@ -28,6 +29,28 @@ class SongActivity : AppCompatActivity() {
         initPlayList()
         initSong()
         initClickListener()
+
+        val dao = FireDao()
+
+        binding.songFireIv.setOnClickListener {
+
+            val fireTitle = binding.songMusicTitleTv.text.toString()
+            val fireSinger = binding.songSingerNameTv.text.toString()
+
+            val fire = Fire("", fireTitle, fireSinger)
+
+            dao.add(fire)?.addOnSuccessListener {
+                Toast.makeText(this, "등록 성공", Toast.LENGTH_SHORT).show()
+            }?.addOnFailureListener {
+                Toast.makeText(this, "등록 실패: ${it.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.fireSongMoreIb.setOnClickListener {
+
+            val intent: Intent = Intent(this@SongActivity, FireListActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initPlayList(){

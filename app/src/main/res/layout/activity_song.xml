@@ -43,7 +43,7 @@
 
 
     <ImageButton
-        android:id="@+id/song_more_ib"
+        android:id="@+id/fire_song_more_ib"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginTop="15dp"
@@ -66,7 +66,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/song_more_ib" />
+        app:layout_constraintTop_toBottomOf="@+id/fire_song_more_ib" />
 
     <TextView
         android:id="@+id/song_singer_name_tv"
@@ -142,10 +142,17 @@
             android:src="@drawable/ic_my_like_off" />
 
         <ImageView
+            android:id="@+id/song_fire_iv"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/icon_fire" />
+
+        <ImageView
             android:id="@+id/song_unlike_iv"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="30dp"
             android:src="@drawable/btn_player_unlike_off" />
 
     </LinearLayout>
