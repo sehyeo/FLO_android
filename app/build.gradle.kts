@@ -93,4 +93,6 @@ dependencies {
     // firebase
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
     implementation("com.google.firebase:firebase-analytics")
+
+    implementation("it.xabaras.android:recyclerview-swipedecorator:1.4")
 }

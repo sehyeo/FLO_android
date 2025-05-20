@@ -26,6 +26,10 @@
         <activity
             android:name=".SongActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".FireListActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
