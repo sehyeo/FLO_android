@@ -39,10 +39,10 @@ class FireListActivity  : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
 
-        // 사용자 정보 가져오기
+        // 노래 정보 가져오기
         getFireList()
 
-        // 사용자 삭제 기능
+        // 노래 삭제 기능
         ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT){
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -122,7 +122,7 @@ class FireListActivity  : AppCompatActivity() {
                     // 키값 가져오기
                     val key = dataSnapshot.key
 
-                    // 사용자 정보에 키 값 담기
+                    // 노래 정보에 키 값 담기
                     fire?.fireKey = key.toString()
 
                     // 리스트에 담기
