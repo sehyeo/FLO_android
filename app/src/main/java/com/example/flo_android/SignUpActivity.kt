@@ -67,10 +67,17 @@ class SignUpActivity : AppCompatActivity() {
         authService.signUp(getUser()).enqueue(object: Callback<AuthResponse>{
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 Log.d("SIGNUP/SUCCESS", response.toString())
-                val resp: AuthResponse = response.body()!!
+
+                val resp: AuthResponse? = response.body()
+
+                if (resp == null) {
+                    Log.e("SIGNUP/ERROR", "응답 body가 null입니다. code: ${response.code()}")
+                    return
+                }
+
                 when(resp.code) {
                     "COMMON200" -> finish()
-                    "AUTH_015" -> {
+                    "AUTH_015", "COMMON400" -> {
                         binding.signUpEmailErrorTv.visibility = View.VISIBLE
                         binding.signUpEmailErrorTv.text = resp.message
                     }
