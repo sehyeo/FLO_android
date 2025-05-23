@@ -26,10 +26,17 @@
         <activity
             android:name=".SongActivity"
             android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="true" />
 
         <activity
             android:name=".FireListActivity"
             android:exported="true" />
+
     </application>
 
 </manifest>

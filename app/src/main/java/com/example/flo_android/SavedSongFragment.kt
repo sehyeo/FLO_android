@@ -12,7 +12,7 @@ class SavedSongFragment : Fragment() {
 
     lateinit var binding: FragmentLockerSavedsongBinding
     lateinit var songDB: SongDatabase
-    lateinit var savedSongRVAdapter: SavedSongRVAdapter
+    lateinit var songRVAdapter: SavedSongRVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,38 +23,35 @@ class SavedSongFragment : Fragment() {
 
         songDB = SongDatabase.getInstance(requireContext())!!
 
-        return binding.root
-    }
-
-    override fun onStart(){
-        super.onStart()
         initRecyclerview()
+
+        return binding.root
     }
 
     private fun initRecyclerview(){
         binding.lockerSavedSongRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        savedSongRVAdapter = SavedSongRVAdapter()
-        binding.lockerSavedSongRecyclerView.adapter = savedSongRVAdapter
+        songRVAdapter = SavedSongRVAdapter()
+        binding.lockerSavedSongRecyclerView.adapter = songRVAdapter
 
-        savedSongRVAdapter.setMyItemClickListener(object : SavedSongRVAdapter.MyItemClickListener{
+        songRVAdapter.setMyItemClickListener(object : SavedSongRVAdapter.MyItemClickListener{
             override fun onRemoveSong(songId: Int) {
                 songDB.songDao().updateIsLikeById(false, songId)
             }
         })
 
-        savedSongRVAdapter.addSongs(songDB.songDao().getLikedSongs(true) as ArrayList<Song>)
+        songRVAdapter.addSongs(songDB.songDao().getLikedSongs(true) as ArrayList<Song>)
     }
 
     fun selectAllSongs(select: Boolean) {
-        savedSongRVAdapter.selectAll(select)
+        songRVAdapter.selectAll(select)
     }
 
     fun deleteSelectedSongs() {
-        val selectedSongs = savedSongRVAdapter.getSelectedSongs()
+        val selectedSongs = songRVAdapter.getSelectedSongs()
         for (song in selectedSongs) {
             songDB.songDao().updateIsLikeById(false, song.id)
         }
-        savedSongRVAdapter.removeSelectedSongs()
+        songRVAdapter.removeSelectedSongs()
     }
 }
