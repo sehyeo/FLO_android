@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignUpActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity(), SignUpView {
 
     lateinit var binding: ActivitySignupBinding
 
@@ -63,32 +63,17 @@ class SignUpActivity : AppCompatActivity() {
             Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
         }
 
-        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
-        authService.signUp(getUser()).enqueue(object: Callback<AuthResponse>{
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-                Log.d("SIGNUP/SUCCESS", response.toString())
+        val authService = AuthService()
+        authService.setSignUpView(this)
 
-                val resp: AuthResponse? = response.body()
+        authService.signUp(getUser())
+    }
 
-                if (resp == null) {
-                    Log.e("SIGNUP/ERROR", "응답 body가 null입니다. code: ${response.code()}")
-                    return
-                }
+    override fun onSignUpSuccess() {
+        finish()
+    }
 
-                when(resp.code) {
-                    "COMMON200" -> finish()
-                    "AUTH_015", "COMMON400" -> {
-                        binding.signUpEmailErrorTv.visibility = View.VISIBLE
-                        binding.signUpEmailErrorTv.text = resp.message
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                Log.d("SIGNUP/FAILURE", t.message.toString())
-            }
-
-        })
-        Log.d("SIGNUP", "HELLO")
+    override fun onSignUpFailure() {
+        TODO("Not yet implemented")
     }
 }
