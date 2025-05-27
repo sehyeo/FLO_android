@@ -62,15 +62,6 @@ class LoginActivity : AppCompatActivity(), LoginView {
 //        editor.apply()
 //    }
 
-    private fun getUser(): User {
-        val email = binding.loginIdEt.text.toString() + "@" + binding.loginDirectInputEt.text.toString()
-        val password = binding.loginPasswordEt.text.toString()
-
-        Log.d("LOGIN/INPUT", "email: '$email', password: '$password'")
-
-        return User(name = "", email = email, password = password)
-    }
-
     private fun startMainActivity(){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
