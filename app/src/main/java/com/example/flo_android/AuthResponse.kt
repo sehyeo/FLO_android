@@ -10,6 +10,8 @@ data class AuthResponse(
 )
 
 data class Result(
-    @SerializedName(value = "memberId") var memberId : Int,
-    @SerializedName(value = "accessToken") var accessToken : String
+    @SerializedName(value = "memberId") val memberId : Int,
+//    @SerializedName(value = "accessToken") var accessToken : String,
+    @SerializedName(value = "createdAt") val createdAt: String,
+    @SerializedName(value = "updatedAt") val updatedAt: String
 )

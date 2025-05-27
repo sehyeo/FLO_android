@@ -46,36 +46,33 @@ class AuthService {
         Log.d("SIGNUP", "HELLO")
     }
 
-    fun login(user: User) {
+    fun login(request: LoginRequest) {
 
-        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
+        val loginService = getRetrofit().create(AuthRetrofitInterface::class.java)
 
-        authService.login(user).enqueue(object: Callback<AuthResponse> {
+        loginService.login(request).enqueue(object: Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 Log.d("LOGIN/SUCCESS", response.toString())
 
-                val resp: AuthResponse? = response.body()
+                if (response.isSuccessful) {
+                    val loginResponse = response.body()
 
-                if (resp == null) {
-                    Log.e("LOGIN/ERROR", "응답 body가 null입니다. code: ${response.code()}")
-
-                    // 🔍 서버의 메시지를 errorBody에서 추출
+                    if (loginResponse != null && loginResponse.code == "COMMON200") {
+                        loginView.onLoginSuccess(loginResponse.code, loginResponse.result!!)
+                    } else {
+                        loginView.onLoginFailure()
+                    }
+                } else {
+                    // 실패 응답 처리
                     val errorMsg = response.errorBody()?.string()
                     Log.e("LOGIN/ERROR_BODY", errorMsg ?: "에러 메시지 없음")
-
                     loginView.onLoginFailure()
-
-                    return
-                }
-
-                when(val code = resp.code) {
-                    "COMMON200" -> loginView.onLoginSuccess(code, resp.result!!)
-                    else -> loginView.onLoginFailure()
                 }
             }
 
             override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
                 Log.d("LOGIN/FAILURE", t.message.toString())
+                loginView.onLoginFailure()
             }
 
         })

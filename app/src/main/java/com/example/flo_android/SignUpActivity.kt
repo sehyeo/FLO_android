@@ -74,6 +74,6 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
     }
 
     override fun onSignUpFailure() {
-        TODO("Not yet implemented")
+        Toast.makeText(this, "회원가입 양식에 맞게 입력해주세요.", Toast.LENGTH_SHORT).show()
     }
 }

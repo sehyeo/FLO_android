@@ -49,9 +49,9 @@ class LoginActivity : AppCompatActivity(), LoginView {
         val authService = AuthService()
         authService.setLoginView(this)
 
-        authService.login(User(email, pwd, ""))
+        authService.login(LoginRequest(email, pwd))
 
-        Toast.makeText(this, "회원 정보가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "회원 정보가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
     }
 
 //    private fun saveJwt(jwt:Int){
@@ -62,29 +62,46 @@ class LoginActivity : AppCompatActivity(), LoginView {
 //        editor.apply()
 //    }
 
+    private fun getUser(): User {
+        val email = binding.loginIdEt.text.toString() + "@" + binding.loginDirectInputEt.text.toString()
+        val password = binding.loginPasswordEt.text.toString()
+
+        Log.d("LOGIN/INPUT", "email: '$email', password: '$password'")
+
+        return User(name = "", email = email, password = password)
+    }
+
     private fun startMainActivity(){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 
-    private fun saveJwt2(jwt:String){
-        val spf = getSharedPreferences("auth2", MODE_PRIVATE)
-        val editor = spf.edit()
+//    private fun saveJwt2(jwt:String){
+//        val spf = getSharedPreferences("auth2", MODE_PRIVATE)
+//        val editor = spf.edit()
+//
+//        editor.putString("jwt", jwt)
+//        editor.apply()
+//    }
 
-        editor.putString("jwt", jwt)
+    private fun saveMemberId(memberId: Int) {
+        val spf = getSharedPreferences("auth", MODE_PRIVATE)
+        val editor = spf.edit()
+        editor.putInt("memberId", memberId)
         editor.apply()
     }
 
     override fun onLoginSuccess(code: String, result: Result) {
         when(code) {
             "COMMON200" -> {
-                saveJwt2(result.accessToken)
+                Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+                saveMemberId(result.memberId)
                 startMainActivity()
             }
         }
     }
 
     override fun onLoginFailure() {
-        // 실패처리
+        Toast.makeText(this, "회원 정보가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
     }
 }
