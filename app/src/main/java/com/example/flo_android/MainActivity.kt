@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        Log.d("MAIN/JWT_TO_SERVER", getJwt().toString())
+
     }
 
     private fun initBottomNavigation() {
@@ -85,6 +87,11 @@ class MainActivity : AppCompatActivity() {
         binding.mainMiniplayerProgressSb.progress = (song.second*100000)/song.playTime // Seekbar의 max가 100000이므로
     }
 
+    private fun getJwt(): String? {
+        val spf = this.getSharedPreferences("auth2", AppCompatActivity.MODE_PRIVATE)
+
+        return spf!!.getString("jwt", "")
+    }
 
     override fun onStart() {
         super.onStart()
