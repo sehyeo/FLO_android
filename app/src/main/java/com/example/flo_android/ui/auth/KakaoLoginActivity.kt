@@ -34,10 +34,31 @@ class KakaoLoginActivity : AppCompatActivity() {
 
                 saveJwt2(token.accessToken)
 
-                val intent = Intent(this@KakaoLoginActivity, MainActivity::class.java)
-                startActivity(intent)
+                UserApiClient.instance.me { user, meError ->
+                    if (meError != null) {
+                        Log.e(TAG, "사용자 정보 요청 실패", meError)
+                    } else if (user != null) {
+                        val nickname = user.kakaoAccount?.profile?.nickname
+                        val email = user.kakaoAccount?.email
+                        val profileImg = user.kakaoAccount?.profile?.profileImageUrl
 
-                finish()
+                        Log.i(TAG, "닉네임: $nickname")
+                        Log.i(TAG, "이메일: $email")
+                        Log.i(TAG, "프로필 사진: $profileImg")
+
+                        Toast.makeText(
+                            context,
+                            "닉네임: $nickname\n이메일: $email",
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                        saveJwt2(token.accessToken)
+
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                    }
+                }
             }
         }
 
