@@ -1,5 +1,6 @@
 package com.example.flo_android
 
+import com.example.flo_android.data.entities.User
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

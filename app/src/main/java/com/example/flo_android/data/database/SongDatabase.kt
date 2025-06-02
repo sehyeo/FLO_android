@@ -4,6 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.flo_android.data.entities.Album
+import com.example.flo_android.data.entities.Like
+import com.example.flo_android.data.entities.Song
+import com.example.flo_android.data.entities.User
 
 
 @Database(entities = [Song::class, Album::class, User::class, Like::class], version = 12)

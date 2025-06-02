@@ -10,7 +10,11 @@ import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.example.flo_android.data.database.SongDatabase
+import com.example.flo_android.data.entities.Album
 import com.example.flo_android.databinding.FragmentHomeBinding
+import com.example.flo_android.ui.main.MainActivity
+import com.example.flo_android.ui.main.album.AlbumFragment
 import com.google.gson.Gson
 
 class HomeFragment : Fragment() {

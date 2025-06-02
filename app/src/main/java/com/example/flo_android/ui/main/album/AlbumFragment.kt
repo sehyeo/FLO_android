@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.flo_android.data.entities.Album
+import com.example.flo_android.data.entities.Like
 import com.example.flo_android.databinding.FragmentAlbumBinding
+import com.example.flo_android.ui.main.MainActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
 

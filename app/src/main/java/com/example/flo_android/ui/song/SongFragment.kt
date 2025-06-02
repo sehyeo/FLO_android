@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.flo_android.databinding.FragmentSongBinding
+import com.example.flo_android.ui.main.album.AlbumViewModel
 
 class SongFragment : Fragment() {
 

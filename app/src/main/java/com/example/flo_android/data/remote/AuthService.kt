@@ -1,6 +1,7 @@
 package com.example.flo_android
 
 import android.util.Log
+import com.example.flo_android.data.entities.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

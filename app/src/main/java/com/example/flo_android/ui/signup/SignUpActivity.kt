@@ -1,14 +1,11 @@
 package com.example.flo_android
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.flo_android.data.entities.User
+import com.example.flo_android.data.remote.AuthService
 import com.example.flo_android.databinding.ActivitySignupBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity(), SignUpView {
 

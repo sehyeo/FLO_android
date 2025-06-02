@@ -1,5 +1,6 @@
 package com.example.flo_android
 
+import com.example.flo_android.data.entities.Fire
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

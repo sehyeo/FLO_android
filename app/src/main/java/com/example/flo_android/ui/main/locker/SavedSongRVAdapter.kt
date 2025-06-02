@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flo_android.data.database.SongDatabase
+import com.example.flo_android.data.entities.Song
 import com.example.flo_android.databinding.ItemSongBinding
 
 class SavedSongRVAdapter() : RecyclerView.Adapter<SavedSongRVAdapter.ViewHolder>() {

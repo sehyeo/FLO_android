@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flo_android.data.entities.Fire
 
 class FireAdapter (private val context: Context, private val fireList:ArrayList<Fire>):
     RecyclerView.Adapter<FireAdapter.FireViewHolder>(){

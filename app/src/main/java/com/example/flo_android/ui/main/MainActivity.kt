@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.flo_android.data.entities.Album
+import com.example.flo_android.data.entities.Song
 import com.example.flo_android.databinding.ActivityMainBinding
 import com.google.gson.Gson
 

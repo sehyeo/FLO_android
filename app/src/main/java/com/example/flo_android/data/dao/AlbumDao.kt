@@ -5,6 +5,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import com.example.flo_android.data.entities.Album
+import com.example.flo_android.data.entities.Like
 
 @Dao
 interface AlbumDao {
