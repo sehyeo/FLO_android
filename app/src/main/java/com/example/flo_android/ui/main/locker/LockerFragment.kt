@@ -11,6 +11,7 @@ import com.example.flo_android.databinding.FragmentLockerBinding
 import com.example.flo_android.ui.main.MainActivity
 import com.example.flo_android.ui.login.LoginActivity
 import com.google.android.material.tabs.TabLayoutMediator
+import com.navercorp.nid.NaverIdLoginSDK
 
 class LockerFragment : Fragment() {
 
@@ -124,6 +125,7 @@ class LockerFragment : Fragment() {
     private fun logout() {
         when (getLoginType()) {
             "kakao" -> kakaoLogout()
+            "naver" -> naverLogout()
             else -> basicLogout()
         }
     }
@@ -150,6 +152,19 @@ class LockerFragment : Fragment() {
                 startActivity(Intent(activity, MainActivity::class.java))
             }
         }
+    }
+
+    private fun naverLogout() {
+        NaverIdLoginSDK.logout()
+
+        android.util.Log.i("LockerFragment", "네이버 로그아웃 성공")
+
+        val spf = activity?.getSharedPreferences("auth2", AppCompatActivity.MODE_PRIVATE)
+        val editor = spf!!.edit()
+        editor.clear()
+        editor.apply()
+
+        startActivity(Intent(activity, MainActivity::class.java))
     }
 
 

@@ -10,6 +10,7 @@ import com.example.flo_android.data.remote.LoginRequest
 import com.example.flo_android.data.remote.Result
 import com.example.flo_android.databinding.ActivityLoginBinding
 import com.example.flo_android.ui.auth.KakaoLoginActivity
+import com.example.flo_android.ui.auth.NaverLoginActivity
 import com.example.flo_android.ui.main.MainActivity
 
 
@@ -33,6 +34,11 @@ class LoginActivity : AppCompatActivity(), LoginView {
         binding.loginKakakoLoginIv.setOnClickListener {
             startActivity(Intent(this, KakaoLoginActivity::class.java))
         }
+
+        binding.loginNaverLoginIv.setOnClickListener {
+            startActivity(Intent(this, NaverLoginActivity::class.java))
+        }
+
     }
 
     private fun login(){

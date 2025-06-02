@@ -56,5 +56,9 @@
             android:name=".ui.auth.KakaoLoginActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".ui.auth.NaverLoginActivity"
+            android:exported="true" />
+
     </application>
 </manifest>
