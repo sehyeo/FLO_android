@@ -88,14 +88,14 @@ class AuthService {
         testService.test("Bearer $jwt").enqueue(object : Callback<AuthTestResponse> {
             override fun onResponse(call: Call<AuthTestResponse>, response: Response<AuthTestResponse>) {
                 if (response.isSuccessful && response.body()?.isSuccess == true) {
-                    Log.d("TEST/Success", "result: ${response.body()?.result}")
+                    Log.d("TEST/SUCCESS", "result: ${response.body()?.result}")
                 } else {
-                    Log.e("TEST", "code: ${response.body()?.code}, message: ${response.body()?.message}")
+                    Log.e("TEST/FAILURE", "code: ${response.body()?.code}, message: ${response.body()?.message}")
                 }
             }
 
             override fun onFailure(call: Call<AuthTestResponse>, t: Throwable) {
-                Log.e("TEST/Failure", "네트워크 오류: ${t.message}")
+                Log.e("TEST/FAILURE", "네트워크 오류: ${t.message}")
             }
         })
     }
