@@ -15,6 +15,7 @@
 local.properties
 schemas/
 google-services.json
+local.properties
 
 # Kotlin build cache
 .kotlin/

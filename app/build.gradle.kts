@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,6 +7,10 @@ plugins {
     kotlin("kapt")
     id("com.google.gms.google-services")
 }
+
+val kakaoNativeKey = Properties().apply {
+    load(project.rootProject.file("local.properties").inputStream())
+}.getProperty("KAKAO_NATIVE_APP_KEY")
 
 android {
     namespace = "com.example.flo_android"
@@ -26,6 +32,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders["kakaoNativeAppKey"] = kakaoNativeKey
     }
 
     buildTypes {
