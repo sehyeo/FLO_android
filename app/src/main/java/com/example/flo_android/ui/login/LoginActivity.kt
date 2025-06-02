@@ -81,6 +81,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
         val editor = spf.edit()
 
         editor.putString("jwt", jwt)
+        editor.putString("login_type", "basic")
         editor.apply()
     }
 

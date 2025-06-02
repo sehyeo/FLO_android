@@ -88,11 +88,13 @@ class KakaoLoginActivity : AppCompatActivity() {
         }
     }
 
+
     private fun saveJwt2(jwt:String){
         val spf = getSharedPreferences("auth2", MODE_PRIVATE)
         val editor = spf.edit()
 
         editor.putString("jwt", jwt)
+        editor.putString("login_type", "kakao")
         editor.apply()
     }
 }

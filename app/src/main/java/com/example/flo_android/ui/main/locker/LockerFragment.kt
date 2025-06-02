@@ -77,13 +77,23 @@ class LockerFragment : Fragment() {
     }
 
     private fun getJwt():Int {
-        val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
+        val spf = activity?.getSharedPreferences("auth2", AppCompatActivity.MODE_PRIVATE)
         return spf!!.getInt("jwt", 0)
     }
 
+    private fun getJwt2(): String? {
+        val spf = activity?.getSharedPreferences("auth2", AppCompatActivity.MODE_PRIVATE)
+        return spf?.getString("jwt", null)
+    }
+
+    private fun getLoginType(): String? {
+        val spf = activity?.getSharedPreferences("auth2", AppCompatActivity.MODE_PRIVATE)
+        return spf?.getString("login_type", null)
+    }
+
     private fun initViews() {
-        val jwt : Int = getJwt()
-        if (jwt == 0) {
+        val jwt: String? = getJwt2()
+        if (jwt.isNullOrEmpty()) {
             binding.lockerLoginTv.text = "로그인"
             binding.lockerLoginTv.setOnClickListener {
                 startActivity(Intent(activity, LoginActivity::class.java))
@@ -91,17 +101,56 @@ class LockerFragment : Fragment() {
         } else {
             binding.lockerLoginTv.text = "로그아웃"
             binding.lockerLoginTv.setOnClickListener {
-                // 로그아웃 진행
                 logout()
+                startActivity(Intent(activity, MainActivity::class.java))
+            }
+        }
+//        val jwt : Int = getJwt()
+//        if (jwt == 0) {
+//            binding.lockerLoginTv.text = "로그인"
+//            binding.lockerLoginTv.setOnClickListener {
+//                startActivity(Intent(activity, LoginActivity::class.java))
+//            }
+//        } else {
+//            binding.lockerLoginTv.text = "로그아웃"
+//            binding.lockerLoginTv.setOnClickListener {
+//                // 로그아웃 진행
+//                logout()
+//                startActivity(Intent(activity, MainActivity::class.java))
+//            }
+//        }
+    }
+
+    private fun logout() {
+        when (getLoginType()) {
+            "kakao" -> kakaoLogout()
+            else -> basicLogout()
+        }
+    }
+
+    private fun basicLogout() {
+        val spf = activity?.getSharedPreferences("auth2", AppCompatActivity.MODE_PRIVATE)
+        val editor = spf!!.edit()
+        editor.clear()
+        editor.apply()
+    }
+
+    private fun kakaoLogout() {
+        com.kakao.sdk.user.UserApiClient.instance.logout { error ->
+            if (error != null) {
+                android.util.Log.e("LockerFragment", "카카오 로그아웃 실패", error)
+            } else {
+                android.util.Log.i("LockerFragment", "카카오 로그아웃 성공")
+
+                val spf = activity?.getSharedPreferences("auth2", AppCompatActivity.MODE_PRIVATE)
+                val editor = spf!!.edit()
+                editor.clear()
+                editor.apply()
+
                 startActivity(Intent(activity, MainActivity::class.java))
             }
         }
     }
 
-    private fun logout() {
-        val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
-        val editor = spf!!.edit()
-        editor.remove("jwt")
-        editor.apply()
-    }
+
 }
