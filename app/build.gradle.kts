@@ -22,6 +22,8 @@ android {
 
     buildFeatures{
         dataBinding = true
+        compose = true
+        buildConfig = true
     }
 
     defaultConfig {
@@ -34,6 +36,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         manifestPlaceholders["kakaoNativeAppKey"] = kakaoNativeKey
+
+        buildConfigField("String", "KAKAO_NATIVE_APP_KEY", "\"$kakaoNativeKey\"")
     }
 
     buildTypes {
@@ -52,9 +56,6 @@ android {
     kotlinOptions {
         jvmTarget = "11"
         freeCompilerArgs += listOf("-Xjvm-default=all", "-Xemit-jvm-type-annotations")
-    }
-    buildFeatures {
-        compose = true
     }
     kapt {
         arguments {

@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:name=".ui.auth.GlobalApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -49,6 +50,10 @@
 
         <activity
             android:name=".ui.main.fire.FireListActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".ui.auth.KakaoLoginActivity"
             android:exported="true" />
 
     </application>
