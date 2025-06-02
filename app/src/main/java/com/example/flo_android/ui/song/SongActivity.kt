@@ -8,8 +8,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.flo_android.R
-import com.example.flo_android.data.dao.FireDao
-import com.example.flo_android.data.database.SongDatabase
+import com.example.flo_android.data.local.FireDao
+import com.example.flo_android.data.local.SongDatabase
 import com.example.flo_android.data.entities.Fire
 import com.example.flo_android.data.entities.Song
 import com.example.flo_android.databinding.ActivitySongBinding

@@ -71,18 +71,11 @@ class LoginActivity : AppCompatActivity(), LoginView {
         startActivity(intent)
     }
 
-//    private fun saveJwt2(jwt:String){
-//        val spf = getSharedPreferences("auth2", MODE_PRIVATE)
-//        val editor = spf.edit()
-//
-//        editor.putString("jwt", jwt)
-//        editor.apply()
-//    }
-
-    private fun saveMemberId(memberId: Int) {
-        val spf = getSharedPreferences("auth", MODE_PRIVATE)
+    private fun saveJwt2(jwt:String){
+        val spf = getSharedPreferences("auth2", MODE_PRIVATE)
         val editor = spf.edit()
-        editor.putInt("memberId", memberId)
+
+        editor.putString("jwt", jwt)
         editor.apply()
     }
 
@@ -90,7 +83,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
         when(code) {
             "COMMON200" -> {
                 Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-                saveMemberId(result.memberId)
+                saveJwt2(result.accessToken)
+                AuthService().test(result.accessToken)
                 startMainActivity()
             }
         }

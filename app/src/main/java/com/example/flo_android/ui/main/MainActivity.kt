@@ -10,7 +10,7 @@ import com.example.flo_android.ui.main.look.LookFragment
 import com.example.flo_android.R
 import com.example.flo_android.ui.main.search.SearchFragment
 import com.example.flo_android.ui.song.SongActivity
-import com.example.flo_android.data.database.SongDatabase
+import com.example.flo_android.data.local.SongDatabase
 import com.example.flo_android.data.entities.Album
 import com.example.flo_android.data.entities.Song
 import com.example.flo_android.databinding.ActivityMainBinding

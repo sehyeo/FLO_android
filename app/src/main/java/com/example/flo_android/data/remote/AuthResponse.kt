@@ -11,7 +11,14 @@ data class AuthResponse(
 
 data class Result(
     @SerializedName(value = "memberId") val memberId : Int,
-//    @SerializedName(value = "accessToken") var accessToken : String,
+    @SerializedName(value = "accessToken") var accessToken : String,
     @SerializedName(value = "createdAt") val createdAt: String,
     @SerializedName(value = "updatedAt") val updatedAt: String
+)
+
+data class AuthTestResponse(
+    @SerializedName("isSuccess") val isSuccess: Boolean,
+    @SerializedName("code") val code: String,
+    @SerializedName("message") val message: String,
+    @SerializedName("result") val result: String? = null
 )

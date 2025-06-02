@@ -1,12 +1,9 @@
-package com.example.flo_android.data.database
+package com.example.flo_android.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.flo_android.data.dao.AlbumDao
-import com.example.flo_android.data.dao.SongDao
-import com.example.flo_android.data.dao.UserDao
 import com.example.flo_android.data.entities.Album
 import com.example.flo_android.data.entities.Like
 import com.example.flo_android.data.entities.Song

@@ -82,4 +82,21 @@ class AuthService {
         })
         Log.d("LOGIN", "HELLO")
     }
+
+    fun test(jwt: String) {
+        val testService = getRetrofit().create(AuthRetrofitInterface::class.java)
+        testService.test("Bearer $jwt").enqueue(object : Callback<AuthTestResponse> {
+            override fun onResponse(call: Call<AuthTestResponse>, response: Response<AuthTestResponse>) {
+                if (response.isSuccessful && response.body()?.isSuccess == true) {
+                    Log.d("TEST", "result: ${response.body()?.result}")
+                } else {
+                    Log.e("TEST", "code: ${response.body()?.code}, message: ${response.body()?.message}")
+                }
+            }
+
+            override fun onFailure(call: Call<AuthTestResponse>, t: Throwable) {
+                Log.e("TEST", "네트워크 오류: ${t.message}")
+            }
+        })
+    }
 }
