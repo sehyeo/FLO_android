@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.flo_android.databinding.FragmentLockerBinding
 import com.example.flo_android.ui.main.MainActivity
-import com.example.flo_android.ui.signin.LoginActivity
+import com.example.flo_android.ui.login.LoginActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
 class LockerFragment : Fragment() {

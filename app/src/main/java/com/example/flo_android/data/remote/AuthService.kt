@@ -1,7 +1,7 @@
 package com.example.flo_android.data.remote
 
 import android.util.Log
-import com.example.flo_android.ui.signin.LoginView
+import com.example.flo_android.ui.login.LoginView
 import com.example.flo_android.ui.signup.SignUpView
 import com.example.flo_android.data.entities.User
 import com.example.flo_android.utils.getRetrofit

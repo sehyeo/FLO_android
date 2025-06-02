@@ -1,4 +1,4 @@
-package com.example.flo_android.ui.signin
+package com.example.flo_android.ui.login
 
 import android.content.Intent
 import android.os.Bundle

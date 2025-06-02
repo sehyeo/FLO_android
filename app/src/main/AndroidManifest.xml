@@ -42,7 +42,7 @@
             android:name=".ui.song.SongActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.signin.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="true" />
         <activity
             android:name=".ui.signup.SignUpActivity"
