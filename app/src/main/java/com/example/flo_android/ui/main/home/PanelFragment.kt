@@ -1,10 +1,11 @@
-package com.example.flo_android
+package com.example.flo_android.ui.main.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.flo_android.R
 import com.example.flo_android.databinding.FragmentPanelBinding
 
 class PanelFragment : Fragment() {

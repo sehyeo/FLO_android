@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.main.home
 
 data class PanelInfo (
     val albumImgRes: Int,

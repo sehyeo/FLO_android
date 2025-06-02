@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.main.fire
 
 import android.graphics.Canvas
 import android.graphics.Color
@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flo_android.R
 import com.example.flo_android.data.dao.FireDao
 import com.example.flo_android.data.entities.Fire
 import com.example.flo_android.databinding.ActivityFireListBinding

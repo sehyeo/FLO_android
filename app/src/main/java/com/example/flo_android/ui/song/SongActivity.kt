@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.song
 
 import android.content.Intent
 import android.media.MediaPlayer
@@ -7,11 +7,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.flo_android.R
 import com.example.flo_android.data.dao.FireDao
 import com.example.flo_android.data.database.SongDatabase
 import com.example.flo_android.data.entities.Fire
 import com.example.flo_android.data.entities.Song
 import com.example.flo_android.databinding.ActivitySongBinding
+import com.example.flo_android.ui.main.fire.FireListActivity
 import com.google.gson.Gson
 
 class SongActivity : AppCompatActivity() {

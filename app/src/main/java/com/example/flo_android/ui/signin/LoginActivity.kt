@@ -1,9 +1,10 @@
-package com.example.flo_android
+package com.example.flo_android.ui.signin
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.flo_android.ui.signup.SignUpActivity
 import com.example.flo_android.data.remote.AuthService
 import com.example.flo_android.data.remote.LoginRequest
 import com.example.flo_android.data.remote.Result

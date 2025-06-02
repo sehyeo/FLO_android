@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.data.entities
 
 data class Fire(
     var fireKey: String,

@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.main.locker
 
 import android.content.Intent
 import android.os.Bundle
@@ -58,7 +58,8 @@ class LockerFragment : Fragment() {
     }
 
     private fun setupBottomSheetListener() {
-        bottomSheetFragment.setBottomSheetListener(object : BottomSheetFragment.BottomSheetListener {
+        bottomSheetFragment.setBottomSheetListener(object :
+            BottomSheetFragment.BottomSheetListener {
             override fun onDeleteSelected() {
                 lockerAdapter.savedSongFragment.deleteSelectedSongs()
             }

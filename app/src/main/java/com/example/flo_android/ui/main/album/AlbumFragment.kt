@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.main.album
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.flo_android.ui.main.home.HomeFragment
+import com.example.flo_android.R
+import com.example.flo_android.data.database.SongDatabase
 import com.example.flo_android.data.entities.Album
 import com.example.flo_android.data.entities.Like
 import com.example.flo_android.databinding.FragmentAlbumBinding

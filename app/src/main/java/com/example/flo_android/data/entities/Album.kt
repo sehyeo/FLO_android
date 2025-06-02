@@ -1,5 +1,6 @@
-package com.example.flo_android
+package com.example.flo_android.data.entities
 
+import androidx.annotation.DrawableRes
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -8,5 +9,5 @@ data class Album(
     @PrimaryKey(autoGenerate = false) var id: Int = 0,
     var title: String? = "",
     var singer: String? = "",
-    var coverImg: Int? = null
+    @DrawableRes var coverImg: Int? = null
 )

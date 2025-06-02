@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.main.album
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -29,13 +29,13 @@ class AlbumRVAdapter(private val albumList: ArrayList<Album>): RecyclerView.Adap
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): AlbumRVAdapter.ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemAlbumBinding = ItemAlbumBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
 
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: AlbumRVAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val album = albumList[position]
         holder.bind(album)
         holder.itemView.setOnClickListener { mItemClickListener.onItemClick(albumList[position]) }

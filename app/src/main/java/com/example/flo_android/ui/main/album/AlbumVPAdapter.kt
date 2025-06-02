@@ -1,7 +1,8 @@
-package com.example.flo_android
+package com.example.flo_android.ui.main.album
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.flo_android.ui.song.SongFragment
 
 class AlbumVPAdapter(fragment:Fragment) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = 3

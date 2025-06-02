@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.data.remote
 
 import com.example.flo_android.data.entities.User
 import retrofit2.Call

@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.signup
 
 import android.os.Bundle
 import android.widget.Toast

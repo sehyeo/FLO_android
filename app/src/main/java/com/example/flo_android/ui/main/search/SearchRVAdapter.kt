@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.main.search
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flo_android.databinding.ItemCategoryBinding
 import androidx.core.graphics.toColorInt
+import com.example.flo_android.R
 
 class SearchRVAdapter(
     private val items: List<String>,

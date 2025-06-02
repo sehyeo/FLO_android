@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.signin
 
 import com.example.flo_android.data.remote.Result
 

@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.main.locker
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -36,7 +36,7 @@ class SavedSongFragment : Fragment() {
         songRVAdapter = SavedSongRVAdapter()
         binding.lockerSavedSongRecyclerView.adapter = songRVAdapter
 
-        songRVAdapter.setMyItemClickListener(object : SavedSongRVAdapter.MyItemClickListener{
+        songRVAdapter.setMyItemClickListener(object : SavedSongRVAdapter.MyItemClickListener {
             override fun onRemoveSong(songId: Int) {
                 songDB.songDao().updateIsLikeById(false, songId)
             }

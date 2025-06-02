@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.main
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.example.flo_android.R
 import kotlin.concurrent.thread
 
 class Foreground : Service() {

@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.main.fire
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flo_android.R
 import com.example.flo_android.data.entities.Fire
 
 class FireAdapter (private val context: Context, private val fireList:ArrayList<Fire>):

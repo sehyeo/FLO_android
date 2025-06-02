@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.utils
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

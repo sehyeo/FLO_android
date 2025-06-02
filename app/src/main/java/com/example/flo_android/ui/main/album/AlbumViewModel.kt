@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.main.album
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.data.dao
 
 import androidx.room.*
 import com.example.flo_android.data.entities.Song

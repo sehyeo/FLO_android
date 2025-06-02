@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.ui.main.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

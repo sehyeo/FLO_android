@@ -1,4 +1,4 @@
-package com.example.flo_android
+package com.example.flo_android.data.dao
 
 import com.example.flo_android.data.entities.Fire
 import com.google.android.gms.tasks.Task

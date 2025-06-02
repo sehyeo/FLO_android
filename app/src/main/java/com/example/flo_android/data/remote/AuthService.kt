@@ -1,7 +1,10 @@
-package com.example.flo_android
+package com.example.flo_android.data.remote
 
 import android.util.Log
+import com.example.flo_android.ui.signin.LoginView
+import com.example.flo_android.ui.signup.SignUpView
 import com.example.flo_android.data.entities.User
+import com.example.flo_android.utils.getRetrofit
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
