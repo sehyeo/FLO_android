@@ -19,6 +19,7 @@ if (localFile.exists()) {
 val kakaoNativeKey = localProperties.getProperty("KAKAO_NATIVE_APP_KEY")
 val naverClientId = localProperties.getProperty("NAVER_CLIENT_ID")
 val naverClientSecret = localProperties.getProperty("NAVER_CLIENT_SECRET")
+val webClientId = localProperties.getProperty("WEB_CLIENT_ID")
 
 android {
     namespace = "com.example.flo_android"
@@ -48,6 +49,7 @@ android {
         buildConfigField("String", "KAKAO_NATIVE_APP_KEY", "\"$kakaoNativeKey\"")
         buildConfigField("String", "NAVER_CLIENT_ID", "\"${localProperties["NAVER_CLIENT_ID"]}\"")
         buildConfigField("String", "NAVER_CLIENT_SECRET", "\"${localProperties["NAVER_CLIENT_SECRET"]}\"")
+        buildConfigField("String", "WEB_CLIENT_ID", "\"${localProperties["WEB_CLIENT_ID"]}\"")
     }
 
     buildTypes {
@@ -150,4 +152,10 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.3.6")
     implementation("com.squareup.moshi:moshi-kotlin:1.11.0")
     implementation("com.airbnb.android:lottie:3.1.0")
+
+    // 구글 플레이 라이브러리
+    implementation("com.google.gms:google-services:4.3.15")
+    implementation("com.google.firebase:firebase-auth:22.0.0")
+    implementation("com.google.firebase:firebase-bom:32.0.0")
+    implementation("com.google.android.gms:play-services-auth:20.5.0")
 }

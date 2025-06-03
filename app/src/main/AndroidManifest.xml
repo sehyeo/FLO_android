@@ -60,5 +60,9 @@
             android:name=".ui.auth.NaverLoginActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".ui.auth.GoogleLoginActivity"
+            android:exported="true" />
+
     </application>
 </manifest>

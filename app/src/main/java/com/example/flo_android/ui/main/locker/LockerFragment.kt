@@ -47,7 +47,6 @@ class LockerFragment : Fragment() {
             startActivity(Intent(activity, LoginActivity::class.java))
         }
 
-
         setupBottomSheetListener()
 
         return binding.root
@@ -126,6 +125,7 @@ class LockerFragment : Fragment() {
         when (getLoginType()) {
             "kakao" -> kakaoLogout()
             "naver" -> naverLogout()
+            "google" -> googleLogout()
             else -> basicLogout()
         }
     }
@@ -167,5 +167,27 @@ class LockerFragment : Fragment() {
         startActivity(Intent(activity, MainActivity::class.java))
     }
 
+    private fun googleLogout() {
+        val googleSignInClient = com.google.android.gms.auth.api.signin.GoogleSignIn.getClient(
+            requireActivity(),
+            com.google.android.gms.auth.api.signin.GoogleSignInOptions.Builder(
+                com.google.android.gms.auth.api.signin.GoogleSignInOptions.DEFAULT_SIGN_IN
+            )
+                .requestEmail()
+                .build()
+        )
+
+        googleSignInClient.signOut()
+            .addOnCompleteListener {
+                android.util.Log.i("LockerFragment", "구글 로그아웃 성공")
+
+                val spf = activity?.getSharedPreferences("auth2", AppCompatActivity.MODE_PRIVATE)
+                val editor = spf!!.edit()
+                editor.clear()
+                editor.apply()
+
+                startActivity(Intent(activity, MainActivity::class.java))
+            }
+    }
 
 }
