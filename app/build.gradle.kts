@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,6 +7,19 @@ plugins {
     kotlin("kapt")
     id("com.google.gms.google-services")
 }
+
+val localProperties = Properties()
+val localFile = rootProject.file("local.properties")
+if (localFile.exists()) {
+    localFile.inputStream().use { fis ->
+        localProperties.load(fis)
+    }
+}
+
+val kakaoNativeKey = localProperties.getProperty("KAKAO_NATIVE_APP_KEY")
+val naverClientId = localProperties.getProperty("NAVER_CLIENT_ID")
+val naverClientSecret = localProperties.getProperty("NAVER_CLIENT_SECRET")
+val webClientId = localProperties.getProperty("WEB_CLIENT_ID")
 
 android {
     namespace = "com.example.flo_android"
@@ -16,6 +31,8 @@ android {
 
     buildFeatures{
         dataBinding = true
+        compose = true
+        buildConfig = true
     }
 
     defaultConfig {
@@ -26,6 +43,13 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders["kakaoNativeAppKey"] = kakaoNativeKey
+
+        buildConfigField("String", "KAKAO_NATIVE_APP_KEY", "\"$kakaoNativeKey\"")
+        buildConfigField("String", "NAVER_CLIENT_ID", "\"${localProperties["NAVER_CLIENT_ID"]}\"")
+        buildConfigField("String", "NAVER_CLIENT_SECRET", "\"${localProperties["NAVER_CLIENT_SECRET"]}\"")
+        buildConfigField("String", "WEB_CLIENT_ID", "\"${localProperties["WEB_CLIENT_ID"]}\"")
     }
 
     buildTypes {
@@ -44,9 +68,6 @@ android {
     kotlinOptions {
         jvmTarget = "11"
         freeCompilerArgs += listOf("-Xjvm-default=all", "-Xemit-jvm-type-annotations")
-    }
-    buildFeatures {
-        compose = true
     }
     kapt {
         arguments {
@@ -109,4 +130,32 @@ dependencies {
     //Glide
     implementation("com.github.bumptech.glide:glide:4.11.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
+
+
+    // 카카오 라이브러리
+    implementation("com.kakao.sdk:v2-all:2.18.0") // 전체 모듈 설치, 2.11.0 버전부터 지원
+    implementation("com.kakao.sdk:v2-user:2.18.0") // 카카오 로그인 API 모듈
+    implementation("com.kakao.sdk:v2-share:2.18.0") // 카카오톡 공유 API 모듈
+    implementation("com.kakao.sdk:v2-talk:2.18.0") // 카카오톡 채널, 카카오톡 소셜, 카카오톡 메시지 API 모듈
+    implementation("com.kakao.sdk:v2-friend:2.18.0") // 피커 API 모듈
+    implementation("com.kakao.sdk:v2-navi:2.18.0") // 카카오내비 API 모듈
+    implementation("com.kakao.sdk:v2-cert:2.18.0") // 카카오톡 인증 서비스 API 모듈
+
+    // 네이버 라이브러리
+    implementation("com.navercorp.nid:oauth:5.10.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.21")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+    implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("androidx.legacy:legacy-support-core-utils:1.0.0")
+    implementation("androidx.browser:browser:1.4.0")
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+    implementation("androidx.fragment:fragment-ktx:1.3.6")
+    implementation("com.squareup.moshi:moshi-kotlin:1.11.0")
+    implementation("com.airbnb.android:lottie:3.1.0")
+
+    // 구글 플레이 라이브러리
+    implementation("com.google.gms:google-services:4.3.15")
+    implementation("com.google.firebase:firebase-auth:22.0.0")
+    implementation("com.google.firebase:firebase-bom:32.0.0")
+    implementation("com.google.android.gms:play-services-auth:20.5.0")
 }
